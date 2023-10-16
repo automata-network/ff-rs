@@ -1,4 +1,11 @@
 #![allow(unused_imports)]
+#![cfg_attr(feature = "tstd", no_std)]
+
+#[cfg(feature = "tstd")]
+#[macro_use]
+extern crate sgxlib as std;
+
+use std::prelude::v1::*;
 
 extern crate byteorder;
 extern crate rand;
@@ -602,6 +609,7 @@ pub use to_hex::{to_hex, from_hex};
 
 mod to_hex {
     use super::{PrimeField, PrimeFieldRepr, hex_ext};
+    use std::prelude::v1::*;
 
     pub fn to_hex<F: PrimeField>(el: &F) -> String {
         let repr = el.into_repr();
